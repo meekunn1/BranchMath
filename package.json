@@ -1,0 +1,21 @@
+{
+  "name": "branchmath",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "react": "cd ./reactApp && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meekunn1/BranchMath.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meekunn1/BranchMath/issues"
+  },
+  "homepage": "https://github.com/meekunn1/BranchMath#readme"
+}
