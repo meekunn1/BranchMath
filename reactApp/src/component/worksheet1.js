@@ -25,7 +25,7 @@ const operations = (type, count, difficulty) => {
   }
   switch (type) {
     case "Add":
-      let worksheet = new Map();
+      let Addworksheet = new Map();
       while (counter > 0) {
         const questionSet = generateQuestions(count, difficulty);
         // console.log(questionSet);
@@ -38,12 +38,29 @@ const operations = (type, count, difficulty) => {
           );
         // console.log(answerSum);
         questionSet.get(counter).answer = answerSum;
-        worksheet.set(counter, questionSet.get(counter));
+        Addworksheet.set(counter, questionSet.get(counter));
         counter = counter - 1;
       }
-      console.log(worksheet);
+      console.log(Addworksheet);
       break;
     case "Subtract":
+      let Subtractworksheet = new Map();
+      while (counter > 0) {
+        const questionSet = generateQuestions(count, difficulty);
+        // console.log(questionSet);
+        const initialValue = questionSet.get(counter).problem[0] * 2;
+        const answerSum = questionSet
+          .get(counter)
+          .problem.reduce(
+            (accumulator, currentValue) => accumulator - currentValue,
+            initialValue
+          );
+        // console.log(answerSum);
+        questionSet.get(counter).answer = answerSum;
+        Subtractworksheet.set(counter, questionSet.get(counter));
+        counter = counter - 1;
+      }
+      console.log(Subtractworksheet);
       break;
     case "Multiply":
       break;
@@ -53,4 +70,4 @@ const operations = (type, count, difficulty) => {
       load = false;
   }
 };
-operations("Add", 10, 1);
+operations("Subtract", 10, 1);
