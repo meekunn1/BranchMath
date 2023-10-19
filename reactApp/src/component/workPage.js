@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Operations from "./worksheet1";
 
 const WorkPage = () => {
   const options = ["Add", "Subtract", "Multiply", "Divide", "mix"];
@@ -53,6 +54,7 @@ const WorkPage = () => {
           Start
         </button>
       </form>
+      <Operations type={type} count={questionCount} difficulty={difficulty}/>
     </div>
   );
 };
