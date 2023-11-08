@@ -1,7 +1,7 @@
-// import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const makeRandomNumber = () => {
-  return Math.floor(Math.random() * 10);
+  return Math.floor(Math.random() * 9) + 1;
 };
 
 const generateQuestions = (count, difficulty) => {
@@ -120,6 +120,6 @@ const Operations = (type, count, difficulty) => {
       load = false;
   }
 };
-Operations("divide", 10, 1);
+// Operations("divide", 10, 1);
 
-// export default operations;
+export default Operations;
