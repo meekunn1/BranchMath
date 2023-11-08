@@ -1,7 +1,7 @@
-// import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const makeRandomNumber = () => {
-  return Math.floor(Math.random() * 9);
+  return Math.floor(Math.random() * 9) + 1;
 };
 
 const generateQuestions = (count, difficulty) => {
@@ -11,20 +11,24 @@ const generateQuestions = (count, difficulty) => {
     const singleQuestion = Array(difficulty + 1)
       .fill(0)
       .map(makeRandomNumber);
-    questionList.set(counter, { problem: singleQuestion, answer: {} });
+    questionList.set(counter, {
+      problem: singleQuestion,
+      question: {},
+      answer: {},
+    });
     counter = counter - 1;
   }
   return questionList;
 };
 
-const operations = (type, count, difficulty) => {
+const Operations = (type, count, difficulty) => {
   let load = false;
   let counter = count;
   if (type) {
     load = true;
   }
   switch (type) {
-    case "Add":
+    case "add":
       let Addworksheet = new Map();
       while (counter > 0) {
         const questionSet = generateQuestions(count, difficulty);
@@ -38,12 +42,15 @@ const operations = (type, count, difficulty) => {
           );
         // console.log(answerSum);
         questionSet.get(counter).answer = answerSum;
+        questionSet.get(counter).question = questionSet
+          .get(counter)
+          .problem.join(" + ");
         Addworksheet.set(counter, questionSet.get(counter));
         counter = counter - 1;
       }
       console.log(Addworksheet);
       break;
-    case "Subtract":
+    case "subtract":
       let Subtractworksheet = new Map();
       while (counter > 0) {
         const questionSet = generateQuestions(count, difficulty);
@@ -57,17 +64,62 @@ const operations = (type, count, difficulty) => {
           );
         // console.log(answerSum);
         questionSet.get(counter).answer = answerSum;
+        questionSet.get(counter).question = questionSet
+          .get(counter)
+          .problem.join(" - ");
         Subtractworksheet.set(counter, questionSet.get(counter));
         counter = counter - 1;
       }
       console.log(Subtractworksheet);
       break;
-    case "Multiply":
+    case "multiply":
+      let MultiplyWorksheet = new Map();
+      while (counter > 0) {
+        const questionSet = generateQuestions(count, difficulty);
+        // console.log(questionSet);
+        const initialValue = 1;
+        const answerSum = questionSet
+          .get(counter)
+          .problem.reduce(
+            (accumulator, currentValue) => accumulator * currentValue,
+            initialValue
+          );
+        // console.log(answerSum);
+        questionSet.get(counter).answer = answerSum;
+        questionSet.get(counter).question = questionSet
+          .get(counter)
+          .problem.join(" x ");
+          MultiplyWorksheet.set(counter, questionSet.get(counter));
+        counter = counter - 1;
+      }
+      console.log(MultiplyWorksheet);
       break;
-    case "Divide":
+    case "divide":
+      let DivideWorksheet = new Map();
+      while (counter > 0) {
+        const questionSet = generateQuestions(count, difficulty);
+        // console.log(questionSet);
+        const initialValue = 1;
+        const answerSum = questionSet
+          .get(counter)
+          .problem.reduce(
+            (accumulator, currentValue) => accumulator / currentValue,
+            initialValue
+          );
+        // console.log(answerSum);
+        questionSet.get(counter).answer = answerSum;
+        questionSet.get(counter).question = questionSet
+          .get(counter)
+          .problem.join(" ÷ ");
+          DivideWorksheet.set(counter, questionSet.get(counter));
+        counter = counter - 1;
+      }
+      console.log(DivideWorksheet);
       break;
     default:
       load = false;
   }
 };
-operations("Subtract", 10, 1);
+// Operations("divide", 10, 1);
+
+export default Operations;
